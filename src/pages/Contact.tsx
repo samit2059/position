@@ -14,18 +14,11 @@ const Contact = () => {
     if (!formRef.current) return;
 
     // Replace these with your real EmailJS credentials
-    const SERVICE_ID = "YOUR_SERVICE_ID";
-    const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-    const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+    const SERVICE_ID = "service_jxdefwn";
+    const TEMPLATE_ID = "template_y7mvgnf";
+    const PUBLIC_KEY = "-xXxspZe_ugkduywB";
 
-    if (SERVICE_ID === "YOUR_SERVICE_ID") {
-      toast({
-        title: "EmailJS not configured",
-        description: "Please add your EmailJS Service ID, Template ID, and Public Key in Contact.tsx.",
-        variant: "destructive",
-      });
-      return;
-    }
+
 
     setSending(true);
     try {

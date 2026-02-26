@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 const skills = [
   "React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js",
-  "Supabase", "PostgreSQL", "Framer Motion", "Git", "Figma",
+  "BootStrap", "MongoDB", "Express js", "Framer Motion", "Git", "Figma",
 ];
 
 const About = () => {
@@ -37,7 +37,11 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="font-body text-sm text-muted-foreground">Your Photo</span>
+            <img
+              src="/profilepg.jpeg"
+              alt="Samit Shrestha"
+              className="w-full h-full object-cover rounded-2xl"
+            />
           </motion.div>
 
           <div className="md:col-span-3 flex flex-col justify-center">

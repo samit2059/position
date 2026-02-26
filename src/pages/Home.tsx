@@ -4,9 +4,30 @@ import { Link } from "react-router-dom";
 import MagneticButton from "@/components/MagneticButton";
 
 const featuredProjects = [
-  { title: "E-Commerce Platform", tag: "React / Node.js" },
-  { title: "SaaS Dashboard", tag: "Next.js / Tailwind" },
-  { title: "Portfolio CMS", tag: "TypeScript / Supabase" },
+  {
+    title: "I-Space E-Commerce",
+    tag: "MERN Stack",
+    image: "/E-commerce.jpeg.png",
+    link: "/work"
+  },
+  {
+    title: "Travel App",
+    tag: "Next.js / Firebase",
+    image: "/travelApp.jpeg.png",
+    link: "/work"
+  },
+  {
+    title: "Hult Prize site",
+    tag: "React / Firebase",
+    image: "/hultprizeatsamriddhi.jpeg.png",
+    link: "/work"
+  },
+  {
+    title: "Vibe Couture",
+    tag: "Three.js / React",
+    image: "/vibeCouture.jpeg.png",
+    link: "/work"
+  },
 ];
 
 const Home = () => {
@@ -83,25 +104,34 @@ const Home = () => {
             Featured Projects
           </motion.h2>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredProjects.map((project, i) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: i * 0.1, duration: 0.6 }}
               >
                 <Link
-                  to="/work"
-                  className="group flex items-center justify-between py-6 border-b border-border hover:border-primary transition-colors duration-300"
+                  to={project.link}
+                  className="group block relative overflow-hidden rounded-2xl border border-border bg-muted/30 aspect-[16/10]"
                 >
-                  <span className="font-display text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </span>
-                  <span className="font-body text-sm text-muted-foreground">
-                    {project.tag}
-                  </span>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-1 rounded backdrop-blur-md border border-primary/20">
+                      {project.tag}
+                    </span>
+                    <h3 className="font-display text-2xl font-bold text-foreground mt-3 group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                  </div>
                 </Link>
               </motion.div>
             ))}
