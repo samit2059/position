@@ -8,7 +8,7 @@ const projects = [
     tags: ["React", "Node.js", "MongoDB", "Express js"],
     span: "md:col-span-2 md:row-span-2",
     image: "/E-commerce.jpeg.png",
-    link: "https://github.com/samitshrestha"
+    link: "https://github.com/samit2059/iNoteBook"
   },
   {
     title: "Travel App",
@@ -43,18 +43,10 @@ const projects = [
     link: "https://vibecouture.web.app/"
   },
   {
-    title: "Weather App",
-    description: "Minimalist weather dashboard with geolocation and 7-day forecasts.",
-    tags: ["React", "OpenWeather API"],
-    span: "md:col-span-1 md:row-span-1",
-    image: "/placeholder.svg",
-    link: "https://github.com/samitshrestha"
-  },
-  {
     title: "Eventra -event management system",
     description: "Eventra is an event management system that allows users to create, manage, and promote events. It also provides a platform for event organizers to manage their events and for attendees to register for events.",
     tags: ["html", 'css', 'javaScript', 'bootstrap'],
-    span: "md:col-span-1 md:row-span-1",
+    span: "md:col-span-2 md:row-span-1",
     image: "/eventra.jpeg.png",
     link: "https://eventsme-me.web.app/"
   },

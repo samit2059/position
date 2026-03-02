@@ -36,7 +36,7 @@ const MagneticButton = ({
 
   return (
     <Comp
-      ref={ref as any}
+      ref={ref as unknown as React.Ref<HTMLDivElement>}
       className={className}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
