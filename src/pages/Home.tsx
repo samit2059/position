@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroGeometric from './components/HeroGeometric';
+import HeroGeometric from '../components/ui/HeroGeometric';
 
 const Home = () => {
     return (
