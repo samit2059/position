@@ -1,15 +1,18 @@
-import React from 'react';
-import HeroGeometric from '../components/ui/HeroGeometric';
+import { HeroGeometric } from '../components/ui/shape-landing-hero';
 
 const Home = () => {
     return (
-        <div>
-            <HeroGeometric badge="Design Collective" title1="Elevate Your" title2="Digital Vision" />
-            {/* Existing featured projects section and other code intact */}
-            <section className="featured-projects">
-                {/* Featured projects code goes here */}
+        <main>
+            <HeroGeometric title="Full-Stack Developer" description="Samit Shrestha" />
+            {/* Existing hero section code */}
+            <section className="hero">
+                
+                {/* Hero section content goes here */}
             </section>
-        </div>
+            <section className="featured-projects">
+                {/* Featured projects grid layout and data here */}
+            </section>
+        </main>
     );
 };
 
