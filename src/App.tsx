@@ -10,7 +10,11 @@ import Work from "@/pages/Work";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/NotFound";
-
+import Footer from "@/components/ui/footer";
+import Skills from "@/pages/skills";
+import Certificates from "@/pages/certificate";
+import Education from "@/pages/education";
+// import { Certificate } from "crypto";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,10 +28,14 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
+            <Route path='/skills' element={<Skills />} />
+            <Route path='/certificate' element={<Certificates />} />
+            <Route path='/education' element={<Education />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
         </AmbientLayout>
       </BrowserRouter>
     </TooltipProvider>

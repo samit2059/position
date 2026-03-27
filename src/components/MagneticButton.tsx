@@ -18,7 +18,7 @@ const MagneticButton = ({
   href,
   strength = 0.3,
 }: MagneticButtonProps) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouse = (e: React.MouseEvent) => {
@@ -36,7 +36,7 @@ const MagneticButton = ({
 
   return (
     <Comp
-      ref={ref as unknown as React.Ref<HTMLDivElement>}
+      ref={ref as any}
       className={className}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
