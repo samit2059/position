@@ -1,16 +1,16 @@
 "use client";
 
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import MagneticButton from "./MagneticButton";
-import { 
-  Home, 
-  Briefcase, 
-  Cpu, 
-  Award, 
-  GraduationCap, 
-  User, 
+import {
+  Home,
+  Briefcase,
+  Cpu,
+  Award,
+  GraduationCap,
+  User,
   Mail,
   Menu,
   X,
@@ -44,12 +44,11 @@ const Navbar = () => {
   }, [mobileOpen]);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        scrolled || mobileOpen 
-          ? "bg-neutral-950 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] py-1" 
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled || mobileOpen
+          ? "bg-neutral-950 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] py-1"
           : "bg-neutral-950/20 backdrop-blur-md border-b border-white/5 py-1"
-      }`}
+        }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
@@ -71,9 +70,8 @@ const Navbar = () => {
               <li key={item.path}>
                 <Link
                   to={item.path}
-                  className={`relative px-4 py-2 rounded-full font-display text-[11px] font-bold tracking-widest uppercase transition-all duration-300 flex items-center gap-2 ${
-                    isActive ? "text-teal-400" : "text-neutral-400 hover:text-white hover:bg-white/5"
-                  }`}
+                  className={`relative px-4 py-2 rounded-full font-display text-[11px] font-bold tracking-widest uppercase transition-all duration-300 flex items-center gap-2 ${isActive ? "text-teal-400" : "text-neutral-400 hover:text-white hover:bg-white/5"
+                    }`}
                 >
                   {item.label}
                   {isActive && (
@@ -89,9 +87,8 @@ const Navbar = () => {
           })}
         </ul>
 
-        {/* Action Button */}
         <div className="hidden md:flex items-center gap-4">
-          <MagneticButton strength={0.1}>
+          <MagneticButton strength={0.1} as="div">
             <Link
               to="/contact"
               className="px-6 py-2.5 rounded-full bg-teal-400 text-black text-[11px] font-black tracking-[0.15em] hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(94,234,212,0.3)]"
@@ -142,17 +139,16 @@ const Navbar = () => {
                       <Link
                         to={item.path}
                         onClick={() => setMobileOpen(false)}
-                        className={`group flex items-center justify-between py-4 border-b border-neutral-800 transition-all ${
-                          isActive ? "text-teal-400 px-4" : "text-neutral-300"
-                        }`}
+                        className={`group flex items-center justify-between py-4 border-b border-neutral-800 transition-all ${isActive ? "text-teal-400 px-4" : "text-neutral-300"
+                          }`}
                       >
                         <div className="flex items-center gap-6">
-                           <span className={`transition-all duration-300 ${isActive ? "scale-110 text-teal-400" : "text-neutral-500 group-hover:text-white"}`}>
+                          <span className={`transition-all duration-300 ${isActive ? "scale-110 text-teal-400" : "text-neutral-500 group-hover:text-white"}`}>
                             {item.icon}
-                           </span>
-                           <span className="text-3xl md:text-5xl font-black tracking-tighter uppercase italic">
-                             {item.label}
-                           </span>
+                          </span>
+                          <span className="text-3xl md:text-5xl font-black tracking-tighter uppercase italic">
+                            {item.label}
+                          </span>
                         </div>
                         {isActive && <ExternalLink size={20} className="text-teal-400 shadow-[0_0_10px_rgba(45,212,191,0.5)]" />}
                       </Link>
@@ -162,7 +158,7 @@ const Navbar = () => {
               </ul>
 
               {/* Mobile CTA */}
-              <motion.div 
+              <motion.div
                 className="mt-6 mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -301,12 +301,14 @@ const Certificates = () => {
                                         src={`${selectedCert.link}#toolbar=0`}
                                         className="w-full h-[70vh] md:h-[75vh]"
                                         title={selectedCert.title}
+                                        loading="lazy"
                                     />
                                 ) : (
                                     <div className="w-full h-full flex items-center justify-center p-2">
                                         <img
                                             src={selectedCert.link}
                                             alt={selectedCert.title}
+                                            loading="lazy"
                                             className="max-w-full max-h-[75vh] object-contain rounded-lg"
                                         />
                                     </div>

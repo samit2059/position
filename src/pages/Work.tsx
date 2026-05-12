@@ -116,6 +116,7 @@ const Work = () => {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
                   className="w-full h-full object-cover object-top transition-transform duration-[1200ms] group-hover:scale-105 opacity-80 group-hover:opacity-100"
                 />
 

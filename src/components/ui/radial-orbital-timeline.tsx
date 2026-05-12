@@ -111,17 +111,34 @@ export default function RadialOrbitalTimeline({
         setRotationAngle(270 - targetAngle);
     };
 
+    const [radius, setRadius] = useState(200);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 640) {
+                setRadius(120);
+            } else if (window.innerWidth < 1024) {
+                setRadius(160);
+            } else {
+                setRadius(220);
+            }
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const calculateNodePosition = (index: number, total: number) => {
         const angle = ((index / total) * 360 + rotationAngle) % 360;
-        const radius = 200;
         const radian = (angle * Math.PI) / 180;
 
         const x = radius * Math.cos(radian) + centerOffset.x;
         const y = radius * Math.sin(radian) + centerOffset.y;
 
-        const zIndex = Math.round(100 + 50 * Math.cos(radian));
+        const zIndex = Math.round(100 + 50 * Math.sin(radian));
         const opacity = Math.max(
-            0.4,
+            0.3,
             Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2))
         );
 
@@ -167,16 +184,16 @@ export default function RadialOrbitalTimeline({
                         transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
                     }}
                 >
-                    <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
-                        <div className="absolute w-20 h-20 rounded-full border border-white/20 animate-ping opacity-70"></div>
+                    <div className="absolute w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10 transition-all duration-500">
+                        <div className="absolute w-12 h-12 sm:w-20 sm:h-20 rounded-full border border-white/20 animate-ping opacity-70"></div>
                         <div
-                            className="absolute w-24 h-24 rounded-full border border-white/10 animate-ping opacity-50"
+                            className="absolute w-16 h-16 sm:w-24 sm:h-24 rounded-full border border-white/10 animate-ping opacity-50 transition-all"
                             style={{ animationDelay: "0.5s" }}
                         ></div>
-                        <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
+                        <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-full bg-white/80 backdrop-blur-md transition-all"></div>
                     </div>
 
-                    <div className="absolute w-96 h-96 rounded-full border border-white/10"></div>
+                    <div className="absolute w-56 h-56 sm:w-96 sm:h-96 rounded-full border border-white/10 transition-all"></div>
 
                     {timelineData.map((item, index) => {
                         const position = calculateNodePosition(index, timelineData.length);

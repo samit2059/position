@@ -42,6 +42,7 @@ const SkillPill = ({ name, icon, index }: { name: string; icon: string; index: n
         <img
             src={icon}
             alt={name}
+            loading="lazy"
             className="w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
         />
         <span className="text-neutral-300 group-hover:text-white text-xs font-black tracking-widest uppercase transition-colors">
