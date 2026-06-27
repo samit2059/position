@@ -7,14 +7,13 @@ import {
   Palette,
   History,
   Zap,
-  Circle
 } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Frontend Engineering",
     icon: <Code2 className="w-5 h-5 text-teal-400" />,
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "BootStrap"]
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Bootstrap"]
   },
   {
     title: "Backend & Systems",
@@ -30,9 +29,9 @@ const skillCategories = [
 
 const timelineEvents = [
   { year: "2022", label: "Started Coding Journey", detail: "Fell in love with logic and problem-solving through my first few lines of C and HTML." },
-  { year: "2023 - 2024", label: "Mastered React", detail: "Transitioned to building complex client-side applications with a focus on modern UI/UX." },
-  { year: "2025", label: "Learned TS & Open Source", detail: "Joined local tech teams and started contributing to various digital platforms." },
-  { year: "2026", label: "Professional Launch", detail: "Currently building high-impact products that solve real-world problems for clients." },
+  { year: "2023 – 2024", label: "Intermediate React Learning", detail: "Transitioned to building complex client-side applications with a focus on modern UI/UX." },
+  { year: "2025", label: "Learned TypeScript & MERN Stack", detail: "Joined local tech teams and worked across various fundamentals of React in real projects." },
+  { year: "2026", label: "Team Projects & Scalable Websites", detail: "Currently building high-impact products that solve real-world problems for people." },
 ];
 
 const About = () => {
@@ -77,8 +76,10 @@ const About = () => {
                   src="/profilepg.jpeg"
                   alt="Samit Shrestha"
                   loading="lazy"
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                  className="w-full h-full object-cover transition-transform duration-700 scale-105 group-hover:scale-100"
                 />
+                {/* subtle gradient overlay for polish instead of grayscale toggle */}
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-transparent pointer-events-none" />
               </div>
               <div className="absolute -inset-4 border border-teal-400/20 rounded-[36px] -z-0 translate-x-3 translate-y-3 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
             </motion.div>
@@ -94,7 +95,7 @@ const About = () => {
               </motion.h2>
               <div className="space-y-6 text-lg text-neutral-400 font-medium leading-relaxed">
                 <p>
-                  I'm a full-stack developer with a deep specialization in crafting highly interactive frontend experiences. My work bridge the gap between complex logic and elegant design.
+                  I'm a full-stack developer with a deep specialization in crafting highly interactive frontend experiences. My work bridges the gap between complex logic and elegant design.
                 </p>
                 <div className="pt-6 grid grid-cols-2 gap-8">
                   <div>
@@ -129,9 +130,9 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="p-8 rounded-3xl bg-neutral-900/40 border border-neutral-800 hover:border-teal-400/30 transition-all duration-300 group"
+                  className="p-8 rounded-3xl bg-neutral-900/40 border border-neutral-800 hover:border-teal-400/30 hover:bg-neutral-900/60 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-neutral-700 transition-all">
                     {category.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-tight">{category.title}</h3>
@@ -173,7 +174,7 @@ const About = () => {
 
                     {/* Content Card */}
                     <div className={`w-full md:w-[45%] ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                      <div className="p-6 md:p-8 rounded-[2rem] bg-neutral-900/40 border border-neutral-800 backdrop-blur-sm hover:border-neutral-700 transition-all group">
+                      <div className="p-6 md:p-8 rounded-[2rem] bg-neutral-900/40 border border-neutral-800 backdrop-blur-sm hover:border-teal-400/20 hover:bg-neutral-900/60 transition-all group">
                         <span className="inline-block px-4 py-1.5 rounded-full bg-teal-400/10 text-teal-400 text-xs font-black tracking-widest mb-4">
                           {event.year}
                         </span>

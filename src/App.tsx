@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import AmbientLayout from "@/components/AmbientLayout";
+import CustomCursor from "@/components/CustomCursor";
 import PageLoader from "@/components/ui/PageLoader";
 import Footer from "@/components/ui/footer";
 
@@ -31,6 +32,7 @@ const queryClient = new QueryClient({
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CustomCursor />
       <Toaster />
       <Sonner />
       <BrowserRouter>

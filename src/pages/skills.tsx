@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 const skillsData = {
     languages: [
@@ -9,15 +8,14 @@ const skillsData = {
         { name: "CSS", icon: "https://skillicons.dev/icons?i=css" },
         { name: "JavaScript", icon: "https://skillicons.dev/icons?i=js" },
         { name: "TypeScript", icon: "https://skillicons.dev/icons?i=ts" },
-        { name: "C", icon: 'https://skillicons.dev/icons?i=c' },
-        { name: "C++", icon: 'https://skillicons.dev/icons?i=cpp' }
-
+        { name: "C", icon: "https://skillicons.dev/icons?i=c" },
+        { name: "C++", icon: "https://skillicons.dev/icons?i=cpp" },
     ],
     tools: [
         { name: "ReactJS", icon: "https://skillicons.dev/icons?i=react" },
         { name: "NextJS", icon: "https://skillicons.dev/icons?i=nextjs" },
         { name: "Tailwind CSS", icon: "https://skillicons.dev/icons?i=tailwind" },
-        { name: "shadcn/ui" },
+        { name: "shadcn/ui", icon: "https://avatars.githubusercontent.com/u/139895814?s=200&v=4" },
         { name: "Framer Motion", icon: "https://svgl.app/library/framer.svg" },
         { name: "NodeJS", icon: "https://skillicons.dev/icons?i=nodejs" },
         { name: "ExpressJS", icon: "https://skillicons.dev/icons?i=express" },
@@ -37,18 +35,30 @@ const SkillPill = ({ name, icon, index }: { name: string; icon: string; index: n
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: index * 0.05 }}
         whileHover={{ y: -5, scale: 1.05 }}
-        className="flex items-center gap-3 bg-neutral-900/40 backdrop-blur-sm px-5 py-3 rounded-2xl border border-neutral-800 hover:border-teal-400/50 transition-all duration-300 group cursor-default shadow-xl"
+        className="flex items-center gap-3 bg-neutral-900/40 backdrop-blur-sm px-5 py-3 rounded-2xl border border-neutral-800 hover:border-teal-400/50 hover:bg-neutral-900/70 hover:shadow-[0_0_25px_-5px_rgba(45,212,191,0.25)] transition-all duration-300 group cursor-default shadow-xl"
     >
         <img
             src={icon}
             alt={name}
             loading="lazy"
-            className="w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="w-6 h-6 object-contain transition-transform duration-300 group-hover:scale-110"
         />
         <span className="text-neutral-300 group-hover:text-white text-xs font-black tracking-widest uppercase transition-colors">
             {name}
         </span>
     </motion.div>
+);
+
+const SectionHeader = ({ label, count }: { label: string; count: number }) => (
+    <div className="flex items-center gap-4 mb-10">
+        <h3 className="text-white text-sm font-black tracking-[0.4em] uppercase italic bg-neutral-900 border border-neutral-800 px-4 py-1.5 rounded-lg">
+            {label}
+        </h3>
+        <div className="h-px flex-1 bg-neutral-800/50" />
+        <span className="text-neutral-600 text-xs font-bold tracking-widest">
+            {String(count).padStart(2, "0")}
+        </span>
+    </div>
 );
 
 const Skills = () => {
@@ -81,12 +91,7 @@ const Skills = () => {
 
                 {/* Languages Section */}
                 <div className="mb-24">
-                    <div className="flex items-center gap-4 mb-10">
-                        <h3 className="text-white text-sm font-black tracking-[0.4em] uppercase italic bg-neutral-900 border border-neutral-800 px-4 py-1.5 rounded-lg">
-                            Languages
-                        </h3>
-                        <div className="h-px flex-1 bg-neutral-800/50" />
-                    </div>
+                    <SectionHeader label="Languages" count={skillsData.languages.length} />
                     <div className="flex flex-wrap gap-4 md:gap-6">
                         {skillsData.languages.map((skill, i) => (
                             <SkillPill key={skill.name} name={skill.name} icon={skill.icon} index={i} />
@@ -96,15 +101,10 @@ const Skills = () => {
 
                 {/* Frameworks & Tools Section */}
                 <div>
-                    <div className="flex items-center gap-4 mb-10">
-                        <h3 className="text-white text-sm font-black tracking-[0.4em] uppercase italic bg-neutral-900 border border-neutral-800 px-4 py-1.5 rounded-lg">
-                            Tech Stack
-                        </h3>
-                        <div className="h-px flex-1 bg-neutral-800/50" />
-                    </div>
+                    <SectionHeader label="Tech Stack" count={skillsData.tools.length} />
                     <div className="flex flex-wrap gap-4 md:gap-6">
                         {skillsData.tools.map((skill, i) => (
-                            <SkillPill key={skill.name} name={skill.name} icon={skill.icon || "https://skillicons.dev/icons?i=react"} index={i} />
+                            <SkillPill key={skill.name} name={skill.name} icon={skill.icon} index={i} />
                         ))}
                     </div>
                 </div>

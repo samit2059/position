@@ -18,21 +18,23 @@ const AmbientLayout = ({ children }: AmbientLayoutProps) => {
   const blob3Y = useTransform(scrollYProgress, [0, 1], ["-50%", "-70%"]);
 
   return (
-    <div ref={containerRef} className="relative min-h-screen">
-      {/* Ambient glow */}
-      <div className="ambient-glow">
+    <div ref={containerRef} className="relative min-h-screen overflow-hidden bg-[#050508]">
+      <div className="portfolio-background" aria-hidden="true">
+        <div className="portfolio-grid" />
+        <div className="portfolio-vignette" />
         <motion.div
-          className="glow-blob glow-blob-1"
+          className="portfolio-orb portfolio-orb-1"
           style={{ left: blob1X, top: blob1Y }}
         />
         <motion.div
-          className="glow-blob glow-blob-2"
+          className="portfolio-orb portfolio-orb-2"
           style={{ right: blob2X, bottom: blob2Y }}
         />
         <motion.div
-          className="glow-blob glow-blob-3"
+          className="portfolio-orb portfolio-orb-3"
           style={{ left: blob3X, top: blob3Y }}
         />
+        <div className="portfolio-scanline" />
       </div>
 
       {/* Noise overlay */}

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiLink2, FiCalendar, FiBookOpen, FiX, FiExternalLink, FiChevronLeft, FiChevronRight, FiEye, FiDownload } from 'react-icons/fi';
+import { Calendar, ChevronLeft, ChevronRight, Download, Eye, X } from 'lucide-react';
 
 interface Certificate {
     title: string;
@@ -9,7 +9,6 @@ interface Certificate {
     date: string;
     link: string;
     issuerLogo: string;
-    image?: string; // High-res image or thumbnail
 }
 
 const certificatesData: Certificate[] = [
@@ -20,7 +19,6 @@ const certificatesData: Certificate[] = [
         date: "June 18 – July 9, 2025",
         link: "/certificates/21daybootcamp.jpg",
         issuerLogo: "SITC",
-        image: "/certificates/21daybootcamp.jpg",
     },
     {
         title: "AI and Prompt Engineering",
@@ -29,7 +27,6 @@ const certificatesData: Certificate[] = [
         date: "December 25 – 26, 2025",
         link: "/certificates/promptengineer.jpg",
         issuerLogo: "SL",
-        image: "/certificates/promptengineer.jpg",
     },
     {
         title: "HULT Prize – Participation",
@@ -38,7 +35,6 @@ const certificatesData: Certificate[] = [
         date: "February 24, 2025",
         link: "/certificates/hult2025participate.jpg",
         issuerLogo: "HP",
-        image: "/certificates/hult2025participate.jpg",
     },
     {
         title: "HULT Prize - Web & Tech Team",
@@ -47,7 +43,6 @@ const certificatesData: Certificate[] = [
         date: "February 13, 2026",
         link: "/certificates/hultprize2026volunteer.jpg",
         issuerLogo: "HPv",
-        image: "/certificates/hultprize2026volunteer.jpg",
     },
     {
         title: "CSIT Nepal - Lakshyarambha",
@@ -56,7 +51,6 @@ const certificatesData: Certificate[] = [
         date: "September, 2025",
         link: "/certificates/csit-lachyarambha.jpg",
         issuerLogo: "CSIT",
-        image: "/certificates/csit-lachyarambha.jpg",
     },
     {
         title: "Red Hat Academy – Linux Fundamental",
@@ -65,7 +59,6 @@ const certificatesData: Certificate[] = [
         date: "March 19, 2025",
         link: "/certificates/redhat-linux.pdf",
         issuerLogo: "RH",
-        image: "/certificates/redhat-linux.pdf",
     },
     {
         title: "Customer Service Essentials",
@@ -74,7 +67,6 @@ const certificatesData: Certificate[] = [
         date: "March 27, 2025",
         link: "/certificates/Customer_Service_Certificate.pdf",
         issuerLogo: "CF",
-        image: "/certificates/Customer_Service_Certificate.pdf",
     },
     {
         title: "Professional Productivity & Time Management",
@@ -83,7 +75,6 @@ const certificatesData: Certificate[] = [
         date: "July 23, 2025",
         link: "/certificates/Time_Management_Certificate.pdf",
         issuerLogo: "CF",
-        image: "/certificates/Time_Management_Certificate.pdf",
     },
     {
         title: "Communication Skills (Basic)",
@@ -92,7 +83,6 @@ const certificatesData: Certificate[] = [
         date: "December 8, 2026",
         link: "/certificates/basicCommunication.pdf",
         issuerLogo: "CS",
-        image: "/certificates/basicCommunication.pdf",
     }
 ];
 
@@ -126,7 +116,6 @@ const modalVariants = {
 
 const Certificates = () => {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-    const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
     const selectedCert = selectedIndex !== null ? certificatesData[selectedIndex] : null;
 
@@ -201,31 +190,6 @@ const Certificates = () => {
                         variants={cardVariants}
                         className="group bg-neutral-900/40 border border-neutral-800 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300 flex flex-col h-full"
                     >
-                        {/* Image Preview Container - COMMENTED OUT as requested */}
-                        {/* 
-                        <div
-                            className="relative aspect-[4/3] bg-neutral-800 overflow-hidden cursor-pointer"
-                            onClick={() => setSelectedIndex(index)}
-                        >
-                            {!imageErrors.has(index) && cert.image && !isPDF(cert.image) ? (
-                                <img
-                                    src={cert.image}
-                                    alt={cert.title}
-                                    onError={() => setImageErrors(prev => new Set(prev).add(index))}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
-                            ) : (
-                                <div className="w-full h-full flex flex-col items-center justify-center gap-2 text-neutral-600">
-                                    {isPDF(cert.link) ? <FiLink2 size={32} /> : <FiBookOpen size={32} />}
-                                    <span className="text-xs font-medium uppercase tracking-widest">{cert.issuerLogo}</span>
-                                </div>
-                            )}
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                                <FiEye className="text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0" size={24} />
-                            </div>
-                        </div>
-                        */}
-
                         <div className="p-6 flex flex-col flex-1">
                             <div className="flex-1">
                                 <div className="flex items-start justify-between gap-3 mb-3">
@@ -236,7 +200,7 @@ const Certificates = () => {
                                 </div>
                                 <p className="text-neutral-500 text-sm mb-4 line-clamp-3">{cert.description}</p>
                                 <div className="flex items-center gap-2 text-xs text-neutral-300 mb-6 font-medium">
-                                    <FiCalendar size={12} />
+                                    <Calendar size={12} />
                                     <span>{cert.date}</span>
                                 </div>
                             </div>
@@ -246,7 +210,7 @@ const Certificates = () => {
                                 className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-neutral-800 hover:bg-neutral-700 text-white rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer"
                             >
                                 <span>View Credential</span>
-                                <FiEye size={16} className="text-purple-400" />
+                                <Eye size={16} className="text-purple-400" />
                             </button>
                         </div>
                     </motion.div>
@@ -283,13 +247,13 @@ const Certificates = () => {
                                         className="p-3 rounded-full bg-neutral-800 hover:bg-neutral-700 transition-colors"
                                         title="Download"
                                     >
-                                        <FiDownload size={20} />
+                                        <Download size={20} />
                                     </a>
                                     <button
                                         onClick={closeViewer}
                                         className="p-3 rounded-full bg-purple-600 hover:bg-purple-500 transition-colors cursor-pointer"
                                     >
-                                        <FiX size={20} />
+                                        <X size={20} />
                                     </button>
                                 </div>
                             </div>
@@ -319,13 +283,13 @@ const Certificates = () => {
                                     onClick={goPrev}
                                     className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
                                 >
-                                    <FiChevronLeft size={24} />
+                                    <ChevronLeft size={24} />
                                 </button>
                                 <button
                                     onClick={goNext}
                                     className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-black/50 hover:bg-black/80 text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 cursor-pointer"
                                 >
-                                    <FiChevronRight size={24} />
+                                    <ChevronRight size={24} />
                                 </button>
                             </div>
 

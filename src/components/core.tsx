@@ -8,85 +8,95 @@ import {
     Code2,
     Zap,
     ArrowRight,
+    Monitor,
+    Server,
+    Database,
+    type LucideIcon
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Updated skills data with "Developer" instead of "System Architecture"
-const skillsData = [
-    {
-        id: 1,
-        title: "Critical Thinking",
-        date: "Core Skill",
-        content: "Analyzing complex logic and debugging architectural bottlenecks in full-stack applications.",
-        category: "Soft Skill",
-        icon: Brain,
-        relatedIds: [2, 4],
-        status: "completed" as const,
-        energy: 95,
-        color: "from-blue-500 to-cyan-500",
-        orbitRadius: 120,
-        angle: 0,
-    },
-    {
-        id: 2,
-        title: "Strategic Planning",
-        date: "Management",
-        content: "Mapping out project milestones, prioritizing features, and optimizing development workflows.",
-        category: "Soft Skill",
-        icon: Target,
-        relatedIds: [1, 5],
-        status: "completed" as const,
-        energy: 85,
-        color: "from-purple-500 to-pink-500",
-        orbitRadius: 120,
-        angle: 72,
-    },
-    {
-        id: 3,
-        title: "Creative Thinking",
-        date: "Design",
-        content: "Implementing unique UI/UX patterns and motion design using Framer Motion and Tailwind.",
-        category: "Soft Skill",
-        icon: Lightbulb,
-        relatedIds: [4],
-        status: "completed" as const,
-        energy: 90,
-        color: "from-amber-500 to-orange-500",
-        orbitRadius: 120,
-        angle: 144,
-    },
-    {
-        id: 4,
-        title: "MERN Stack",
-        date: "Technical",
-        content: "Advanced proficiency in MongoDB, Express, React, and Node.js for scalable web apps.",
-        category: "Development",
-        icon: Code2,
-        relatedIds: [1, 3, 5],
-        status: "completed" as const,
-        energy: 98,
-        color: "from-green-500 to-emerald-500",
-        orbitRadius: 120,
-        angle: 216,
-    },
-    {
-        id: 5,
-        title: "Developer",
-        date: "Engineering",
-        content: "Full-stack developer with expertise in building scalable, secure applications. Proficient in designing robust architectures, implementing RBAC systems, and integrating cloud databases like Firebase and Firestore.",
-        category: "Development",
-        icon: Zap,
-        relatedIds: [2, 4],
-        status: "completed" as const,
-        energy: 92,
-        color: "from-rose-500 to-red-500",
-        orbitRadius: 120,
-        angle: 288,
-    },
+interface Skill {
+    id: number;
+    title: string;
+    description: string;
+    category: string;
+    icon: LucideIcon; // Fixed 'any' ESLint error
+    color: string;
+    angle: number;
+    orbitRadius: number;
+    // energy: number;
+    status: string;
+    content: string;
+    date: string;
+    relatedIds: number[];
+}
+
+// Explicitly type the array as Skill[] and add missing fields
+const skills: Skill[] = [
+  {
+    id: 1,
+    title: "React & Next.js",
+    description: "Building responsive, component-driven web applications with modern React patterns.",
+    category: "Frontend",
+    icon: Monitor,
+    color: "from-blue-500 to-cyan-500",
+    angle: 0,
+    orbitRadius: 120,
+    // energy: 90,
+    status: "active",
+    content: "Advanced engineering with Next.js App Router, Server Components, and optimized client-side state management systems.",
+    date: "Current Focus",
+    relatedIds: [2, 3],
+  },
+  {
+    id: 2,
+    title: "Node.js & Express",
+    description: "Developing scalable REST APIs, authentication systems, and backend services.",
+    category: "Backend",
+    icon: Server,
+    color: "from-green-500 to-emerald-500",
+    angle: 90,
+    orbitRadius: 90,
+    // energy: 85,
+    status: "active",
+    content: "Building decoupled microservices, implementing robust JWT authentication, and structuring middleware logic pipelines.",
+    date: "Continuous Development",
+    relatedIds: [1, 3],
+  },
+  {
+    id: 3,
+    title: "MongoDB & Firebase",
+    description: "Designing secure cloud databases and implementing real-time data solutions.",
+    category: "Database",
+    icon: Database,
+    color: "from-purple-500 to-pink-500",
+    angle: 180,
+    orbitRadius: 120,
+    // energy: 80,
+    status: "maintained",
+    content: "Structuring non-relational database models, optimizing indexing structures, and integrating real-time document change streams.",
+    date: "Production Ready",
+    relatedIds: [1, 2],
+  },
+  {
+    id: 4,
+    title: "Problem Solving",
+    description: "Analyzing complex requirements, debugging efficiently, and delivering maintainable solutions.",
+    category: "Professional",
+    icon: Brain,
+    color: "from-amber-500 to-orange-500",
+    angle: 270,
+    orbitRadius: 90,
+    // energy: 95,
+    status: "core",
+    content: "Applying optimal algorithmic approaches, profiling operational runtimes, and systematically resolving edge-case production performance bugs.",
+    date: "Core Foundation",
+    relatedIds: [1, 2, 3],
+  },
 ];
 
 interface OrbitingSkillProps {
-    skill: typeof skillsData[0];
+    skill: Skill;
     rotation: number;
     isSelected: boolean;
     onSelect: (id: number) => void;
@@ -154,11 +164,10 @@ export default function CoreSkillsSection() {
         return () => clearInterval(interval);
     }, []);
 
-    const selectedSkill = skillsData.find((s) => s.id === selectedSkillId);
+    const selectedSkill = skills.find((s) => s.id === selectedSkillId);
 
     return (
-        <section className="relative py-20 md:py-32 bg-neutral-950 overflow-hidden">
-            {/* Subtle background elements matching Home.tsx */}
+        <section className="relative py-20 md:py-32 overflow-hidden">
             <div className="absolute inset-0 opacity-[0.02] blur-3xl pointer-events-none">
                 <motion.div
                     className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-purple-600 rounded-full"
@@ -203,7 +212,6 @@ export default function CoreSkillsSection() {
                         viewport={{ once: true }}
                     >
                         <div className="relative">
-                            {/* Half-circle background accent */}
                             <div className="absolute -left-20 top-1/2 w-40 h-40 bg-gradient-to-r from-purple-600/[0.1] to-cyan-600/[0.1] rounded-full blur-3xl transform -translate-y-1/2" />
 
                             {/* Content Card */}
@@ -214,7 +222,6 @@ export default function CoreSkillsSection() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                {/* Icon and Category */}
                                 <div className="flex items-start justify-between mb-6">
                                     <motion.div
                                         className={`p-4 rounded-xl bg-gradient-to-br ${selectedSkill?.color} bg-opacity-15`}
@@ -228,7 +235,6 @@ export default function CoreSkillsSection() {
                                     </span>
                                 </div>
 
-                                {/* Title and Date */}
                                 <h3 className="text-3xl font-black text-white mb-2">
                                     {selectedSkill?.title}
                                 </h3>
@@ -236,13 +242,12 @@ export default function CoreSkillsSection() {
                                     {selectedSkill?.date}
                                 </p>
 
-                                {/* Description */}
                                 <p className="text-base text-white/70 leading-relaxed mb-8">
                                     {selectedSkill?.content}
                                 </p>
 
                                 {/* Proficiency Bar */}
-                                <div className="mb-8">
+                                {/* <div className="mb-8">
                                     <div className="flex justify-between items-center mb-3">
                                         <span className="text-sm text-white/60 font-semibold">Proficiency Level</span>
                                         <span className="text-lg font-bold text-white">{selectedSkill?.energy}%</span>
@@ -255,7 +260,7 @@ export default function CoreSkillsSection() {
                                             transition={{ duration: 1, delay: 0.3 }}
                                         />
                                     </div>
-                                </div>
+                                </div> */}
 
                                 {/* Status Badge */}
                                 <div className="flex items-center gap-2 p-4 rounded-lg bg-white/[0.05] border border-white/[0.1]">
@@ -277,7 +282,7 @@ export default function CoreSkillsSection() {
                                 <span className="text-xs text-white/50 font-semibold">Related:</span>
                                 <div className="flex gap-2">
                                     {selectedSkill?.relatedIds.map((id) => {
-                                        const relatedSkill = skillsData.find((s) => s.id === id);
+                                        const relatedSkill = skills.find((s) => s.id === id);
                                         const RelatedIcon = relatedSkill?.icon;
                                         return (
                                             <motion.button
@@ -305,39 +310,10 @@ export default function CoreSkillsSection() {
                         viewport={{ once: true }}
                     >
                         <div className="relative w-full aspect-square max-w-md">
-                            {/* Orbital Rings */}
                             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
-                                {/* Outer ring */}
-                                <circle
-                                    cx="150"
-                                    cy="150"
-                                    r="120"
-                                    fill="none"
-                                    stroke="url(#ringGradient)"
-                                    strokeWidth="1"
-                                    opacity="0.3"
-                                />
-                                {/* Middle ring */}
-                                <circle
-                                    cx="150"
-                                    cy="150"
-                                    r="90"
-                                    fill="none"
-                                    stroke="url(#ringGradient2)"
-                                    strokeWidth="1"
-                                    opacity="0.2"
-                                />
-                                {/* Inner ring */}
-                                <circle
-                                    cx="150"
-                                    cy="150"
-                                    r="60"
-                                    fill="none"
-                                    stroke="url(#ringGradient3)"
-                                    strokeWidth="1"
-                                    opacity="0.15"
-                                />
-
+                                <circle cx="150" cy="150" r="120" fill="none" stroke="url(#ringGradient)" strokeWidth="1" opacity="0.3" />
+                                <circle cx="150" cy="150" r="90" fill="none" stroke="url(#ringGradient2)" strokeWidth="1" opacity="0.2" />
+                                <circle cx="150" cy="150" r="60" fill="none" stroke="url(#ringGradient3)" strokeWidth="1" opacity="0.15" />
                                 <defs>
                                     <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" stopColor="rgb(168, 85, 247)" stopOpacity="0.5" />
@@ -354,7 +330,6 @@ export default function CoreSkillsSection() {
                                 </defs>
                             </svg>
 
-                            {/* Center Core */}
                             <motion.div
                                 className="absolute left-1/2 top-1/2 w-16 h-16 -ml-8 -mt-8 rounded-full bg-gradient-to-br from-purple-500/30 to-cyan-500/30 border border-white/[0.2] backdrop-blur-md"
                                 animate={{
@@ -376,10 +351,9 @@ export default function CoreSkillsSection() {
                                 </div>
                             </motion.div>
 
-                            {/* Orbiting Skills */}
                             <div className="absolute inset-0">
-                                {skillsData.map((skill) => (
-                                    <OrbitingSkill
+                                {skills.map((skill) => (
+                                   <OrbitingSkill
                                         key={skill.id}
                                         skill={skill}
                                         rotation={rotation}
@@ -401,8 +375,8 @@ export default function CoreSkillsSection() {
                     viewport={{ once: true }}
                 >
                     <p className="text-sm text-white/60 text-center mb-4">Tap on the orbit or select below:</p>
-                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                        {skillsData.map((skill) => {
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        {skills.map((skill) => {
                             const Icon = skill.icon;
                             return (
                                 <motion.button

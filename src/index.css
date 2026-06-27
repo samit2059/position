@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    --background: 207 100% 9%;
+    --background: 240 23% 3%;
     --foreground: 60 100% 97%;
 
-    --card: 207 60% 12%;
+    --card: 240 17% 8%;
     --card-foreground: 60 100% 97%;
 
-    --popover: 207 60% 12%;
+    --popover: 240 17% 8%;
     --popover-foreground: 60 100% 97%;
 
-    --primary: 180 100% 25%;
+    --primary: 190 100% 50%;
     --primary-foreground: 60 100% 97%;
 
     --secondary: 40 33% 93%;
@@ -22,7 +22,7 @@
     --muted: 207 40% 16%;
     --muted-foreground: 200 20% 60%;
 
-    --accent: 197 71% 73%;
+    --accent: 266 99% 56%;
     --accent-foreground: 207 100% 9%;
 
     --destructive: 0 84% 60%;
@@ -56,6 +56,156 @@
 
   html {
     scroll-behavior: smooth;
+  }
+}
+
+.portfolio-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 70% 8%, rgb(0 212 255 / 0.08), transparent 34%),
+    radial-gradient(circle at 12% 90%, rgb(127 34 254 / 0.08), transparent 30%),
+    #050508;
+}
+
+.portfolio-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(0 212 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 212 255 / 0.035) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.portfolio-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, transparent 0%, rgb(5 5 8 / 0.16) 48%, rgb(5 5 8 / 0.78) 100%),
+    linear-gradient(180deg, rgb(5 5 8 / 0.1), rgb(5 5 8 / 0.54));
+}
+
+.portfolio-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  opacity: 0.24;
+  transform: translateZ(0);
+  animation: reference-float-y 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.portfolio-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #7f22fe, transparent 70%);
+  top: -200px;
+  right: -200px;
+}
+
+.portfolio-orb-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #00d4ff, transparent 70%);
+  bottom: -160px;
+  left: -150px;
+  animation-duration: 10s;
+  animation-direction: reverse;
+}
+
+.portfolio-orb-3 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, #ff2d78, transparent 70%);
+  opacity: 0.12;
+  top: 40%;
+  left: 35%;
+  animation-duration: 6s;
+}
+
+.portfolio-scanline {
+  position: absolute;
+  inset-inline: 0;
+  top: -20%;
+  height: 22%;
+  opacity: 0;
+  background: linear-gradient(180deg, transparent, rgb(0 212 255 / 0.045), transparent);
+  animation: reference-scanline 12s ease-in-out infinite;
+}
+
+@keyframes reference-float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes reference-scanline {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  12%,
+  58% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(680%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-orb,
+  .portfolio-scanline {
+    animation: none;
+  }
+}
+
+@media (pointer: fine) {
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    z-index: 9999;
+    pointer-events: none;
+    border: 1px solid hsl(var(--foreground) / 0.85);
+    border-radius: 9999px;
+    background: hsl(var(--foreground) / 0.12);
+    box-shadow:
+      0 0 0 1px hsl(var(--background) / 0.16) inset,
+      0 10px 30px hsl(0 0% 0% / 0.22);
+    opacity: 0;
+    backdrop-filter: blur(8px) saturate(1.35);
+    transition:
+      width 160ms ease,
+      height 160ms ease,
+      border-color 160ms ease,
+      background-color 160ms ease,
+      opacity 160ms ease;
+    will-change: transform;
+  }
+
+  .custom-cursor--visible {
+    opacity: 1;
+  }
+
+  .custom-cursor--interactive {
+    width: 44px;
+    height: 44px;
+    border-color: hsl(var(--accent) / 0.95);
+    background: hsl(var(--accent) / 0.18);
   }
 }
 
