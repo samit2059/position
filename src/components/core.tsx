@@ -14,7 +14,7 @@ import {
     type LucideIcon
 } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 interface Skill {
     id: number;
     title: string;
@@ -33,66 +33,66 @@ interface Skill {
 
 // Explicitly type the array as Skill[] and add missing fields
 const skills: Skill[] = [
-  {
-    id: 1,
-    title: "React & Next.js",
-    description: "Building responsive, component-driven web applications with modern React patterns.",
-    category: "Frontend",
-    icon: Monitor,
-    color: "from-blue-500 to-cyan-500",
-    angle: 0,
-    orbitRadius: 120,
-    // energy: 90,
-    status: "active",
-    content: "Advanced engineering with Next.js App Router, Server Components, and optimized client-side state management systems.",
-    date: "Current Focus",
-    relatedIds: [2, 3],
-  },
-  {
-    id: 2,
-    title: "Node.js & Express",
-    description: "Developing scalable REST APIs, authentication systems, and backend services.",
-    category: "Backend",
-    icon: Server,
-    color: "from-green-500 to-emerald-500",
-    angle: 90,
-    orbitRadius: 90,
-    // energy: 85,
-    status: "active",
-    content: "Building decoupled microservices, implementing robust JWT authentication, and structuring middleware logic pipelines.",
-    date: "Continuous Development",
-    relatedIds: [1, 3],
-  },
-  {
-    id: 3,
-    title: "MongoDB & Firebase",
-    description: "Designing secure cloud databases and implementing real-time data solutions.",
-    category: "Database",
-    icon: Database,
-    color: "from-purple-500 to-pink-500",
-    angle: 180,
-    orbitRadius: 120,
-    // energy: 80,
-    status: "maintained",
-    content: "Structuring non-relational database models, optimizing indexing structures, and integrating real-time document change streams.",
-    date: "Production Ready",
-    relatedIds: [1, 2],
-  },
-  {
-    id: 4,
-    title: "Problem Solving",
-    description: "Analyzing complex requirements, debugging efficiently, and delivering maintainable solutions.",
-    category: "Professional",
-    icon: Brain,
-    color: "from-amber-500 to-orange-500",
-    angle: 270,
-    orbitRadius: 90,
-    // energy: 95,
-    status: "core",
-    content: "Applying optimal algorithmic approaches, profiling operational runtimes, and systematically resolving edge-case production performance bugs.",
-    date: "Core Foundation",
-    relatedIds: [1, 2, 3],
-  },
+    {
+        id: 1,
+        title: "React & Next.js",
+        description: "Building responsive, component-driven web applications with modern React patterns.",
+        category: "Frontend",
+        icon: Monitor,
+        color: "from-blue-500 to-cyan-500",
+        angle: 0,
+        orbitRadius: 120,
+        // energy: 90,
+        status: "active",
+        content: "Advanced engineering with Next.js App Router, Server Components, and optimized client-side state management systems.",
+        date: "Current Focus",
+        relatedIds: [2, 3],
+    },
+    {
+        id: 2,
+        title: "Node.js & Express",
+        description: "Developing scalable REST APIs, authentication systems, and backend services.",
+        category: "Backend",
+        icon: Server,
+        color: "from-green-500 to-emerald-500",
+        angle: 90,
+        orbitRadius: 90,
+        // energy: 85,
+        status: "active",
+        content: "Building decoupled microservices, implementing robust JWT authentication, and structuring middleware logic pipelines.",
+        date: "Continuous Development",
+        relatedIds: [1, 3],
+    },
+    {
+        id: 3,
+        title: "MongoDB & Firebase",
+        description: "Designing secure cloud databases and implementing real-time data solutions.",
+        category: "Database",
+        icon: Database,
+        color: "from-purple-500 to-pink-500",
+        angle: 180,
+        orbitRadius: 120,
+        // energy: 80,
+        status: "maintained",
+        content: "Structuring non-relational database models, optimizing indexing structures, and integrating real-time document change streams.",
+        date: "Production Ready",
+        relatedIds: [1, 2],
+    },
+    {
+        id: 4,
+        title: "Problem Solving",
+        description: "Analyzing complex requirements, debugging efficiently, and delivering maintainable solutions.",
+        category: "Professional",
+        icon: Brain,
+        color: "from-amber-500 to-orange-500",
+        angle: 270,
+        orbitRadius: 90,
+        // energy: 95,
+        status: "core",
+        content: "Applying optimal algorithmic approaches, profiling operational runtimes, and systematically resolving edge-case production performance bugs.",
+        date: "Core Foundation",
+        relatedIds: [1, 2, 3],
+    },
 ];
 
 interface OrbitingSkillProps {
@@ -124,18 +124,17 @@ function OrbitingSkill({ skill, rotation, isSelected, onSelect }: OrbitingSkillP
             transition={{ duration: 0.3 }}
         >
             <motion.div
-                className={`w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md border-2 transition-all duration-300 ${
-                    isSelected
-                        ? `bg-white/[0.2] border-white/[0.5] shadow-lg shadow-white/[0.3]`
-                        : `bg-white/[0.08] border-white/[0.2] hover:bg-white/[0.12] hover:border-white/[0.3]`
-                }`}
+                className={`w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md border-2 transition-all duration-300 ${isSelected
+                    ? `bg-white/[0.2] border-white/[0.5] shadow-lg shadow-white/[0.3]`
+                    : `bg-white/[0.08] border-white/[0.2] hover:bg-white/[0.12] hover:border-white/[0.3]`
+                    }`}
                 animate={{
                     boxShadow: isSelected
                         ? [
                             "0 0 20px rgba(255,255,255,0.2)",
                             "0 0 30px rgba(255,255,255,0.3)",
                             "0 0 20px rgba(255,255,255,0.2)",
-                          ]
+                        ]
                         : "0 0 0px rgba(255,255,255,0)",
                 }}
                 transition={{
@@ -353,7 +352,7 @@ export default function CoreSkillsSection() {
 
                             <div className="absolute inset-0">
                                 {skills.map((skill) => (
-                                   <OrbitingSkill
+                                    <OrbitingSkill
                                         key={skill.id}
                                         skill={skill}
                                         rotation={rotation}
@@ -382,11 +381,10 @@ export default function CoreSkillsSection() {
                                 <motion.button
                                     key={skill.id}
                                     onClick={() => setSelectedSkillId(skill.id)}
-                                    className={`p-3 rounded-lg backdrop-blur-md border transition-all ${
-                                        selectedSkillId === skill.id
-                                            ? `bg-white/[0.15] border-white/[0.3]`
-                                            : `bg-white/[0.05] border-white/[0.1] hover:bg-white/[0.08]`
-                                    }`}
+                                    className={`p-3 rounded-lg backdrop-blur-md border transition-all ${selectedSkillId === skill.id
+                                        ? `bg-white/[0.15] border-white/[0.3]`
+                                        : `bg-white/[0.05] border-white/[0.1] hover:bg-white/[0.08]`
+                                        }`}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
@@ -408,13 +406,13 @@ export default function CoreSkillsSection() {
                     <p className="text-white/60 mb-6 text-sm md:text-base">
                         Ready to see these skills in action?
                     </p>
-                    <a
-                        href="/work"
+                    <Link
+                        to="/work"
                         className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105"
                     >
                         View My Projects
                         <ArrowRight className="h-4 w-4" />
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
         </section>
